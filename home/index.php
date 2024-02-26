@@ -22,8 +22,8 @@ include "../conection/database.php";
         </div>
         <h1><span>GET</span>EVENT</h1>
         <div class="buttons">
-            <button id="sign">sign up</button>
-            <button>login</button>
+            <a id="sign">sign up</a>
+            <a href="../login/login.html">login</a>
         </div>
     </nav>
     <article>
