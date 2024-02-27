@@ -1,5 +1,10 @@
 <?php
 include "../conection/database.php";
+// session_start();
+
+// if (isset($_SESSION["id"])) {
+//     header('Location: userSpace.php');
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +27,8 @@ include "../conection/database.php";
         </div>
         <h1><span>GET</span>EVENT</h1>
         <div class="buttons">
-            <a id="sign">sign up</a>
-            <a href="../login/login.html">login</a>
+            <a href="../sign up/index.php" id="sign">sign up</a>
+            <a href="../login/index.php">login</a>
         </div>
     </nav>
     <article>
@@ -55,11 +60,10 @@ include "../conection/database.php";
                 </div>
                 <button
                 <?php
-                foreach (getData($finishedEvent) as $id) {
-                    if ($id["ID_VERSION"] == $info["ID_VERSION"]) {
+                    if ($info["DISPONIBLE"]==0) {
                         echo "class='finish'";
                     }
-                }
+                    echo 'id='.$info["ID_VERSION"];
                 ?>
                 >J'ACHÉTE</button>
             </div>

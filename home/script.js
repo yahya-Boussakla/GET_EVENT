@@ -3,13 +3,6 @@ let secondDateFilter = document.getElementById("secondFilter");
 let firstDateFilter = document.getElementById("firstFilter");
 let dates = document.querySelectorAll(".time span");
 
-let firstFilterDaysLeft = 0;
-let firstFilterHoursLeft = 0;
-let firstFilterMinutsLeft = 0;
-
-let secondFilterDaysLeft = 0;
-let secondFilterHoursLeft = 0;
-let secondFilterMinutsLeft = 0;
 
 function setTimer() {
   for (const date of dates) {
@@ -78,9 +71,9 @@ function available() {
 function dateFrom(date,element) {
   firstDateFilter.addEventListener("change" , () =>{
       let firstFilterTimeLeft = date - new Date(firstDateFilter.value).getTime();
-      firstFilterDaysLeft = Math.floor(firstFilterTimeLeft / (1000 * 60 * 60 * 24));
-      firstFilterHoursLeft = Math.floor((firstFilterTimeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      firstFilterMinutsLeft =  Math.floor((firstFilterTimeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      let firstFilterDaysLeft = Math.floor(firstFilterTimeLeft / (1000 * 60 * 60 * 24));
+      let firstFilterHoursLeft = Math.floor((firstFilterTimeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let firstFilterMinutsLeft =  Math.floor((firstFilterTimeLeft % (1000 * 60 * 60)) / (1000 * 60));
 
       let secondFilterTimeLeft = date - new Date(secondDateFilter.value).getTime();
       let secondFilterDaysLeft = Math.floor(secondFilterTimeLeft / (1000 * 60 * 60 * 24));
