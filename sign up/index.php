@@ -1,5 +1,5 @@
 <?php
-
+include "sign-up.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,13 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="sign-up.css">
-    <title>Your Space</title>
+    <title>GETEVENT</title>
 </head>
 <body>
 <form method="post" action="">
         <div class="title">
             <h1>Sign Up</h1>
-            <span>Already Have an Account? <a href="../login/index.html"> login</a></span>
+            <span>Already Have an Account? <a href="../login/index.php"> login</a></span>
         </div>
         <hr>
         <div class="row">

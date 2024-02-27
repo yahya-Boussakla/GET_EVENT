@@ -1,10 +1,7 @@
 <?php
 include "../conection/database.php";
-// session_start();
+include "../conection/read.php";
 
-// if (isset($_SESSION["id"])) {
-//     header('Location: userSpace.php');
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +41,7 @@ include "../conection/database.php";
     </article>
     <main>
         <?php
-            foreach(getData($quer) as $info):
+            foreach($allEvents  as $info):
         ?>
         <div class="card">
             <img src="../imgs/green-mask.png" alt="">
@@ -58,14 +55,14 @@ include "../conection/database.php";
                         <?= $info['DATE'] ?>
                     </span>
                 </div>
-                <button
+                <a 
                 <?php
+                    echo "href=../reserve/index.php?id=".$info["ID_VERSION"];
                     if ($info["DISPONIBLE"]==0) {
-                        echo "class='finish'";
+                        echo " class='finish'";
                     }
-                    echo 'id='.$info["ID_VERSION"];
                 ?>
-                >J'ACHÉTE</button>
+                >J'ACHÉTE</a>
             </div>
             <div class="category">
                 <?= $info['CATEGORIE'] ?>
