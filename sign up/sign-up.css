@@ -10,6 +10,7 @@ body{
     align-items: center;
     height: 100vh;
     font-family: "Montserrat";
+    scroll-behavior: smooth;
 }
 form h1{
     font-size: 150%;
