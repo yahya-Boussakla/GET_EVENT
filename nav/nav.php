@@ -8,7 +8,7 @@
         </div>
         <h1><span>GET</span>EVENT</h1>
         <div class="buttons">
-            <a href="../sign up/index.php" id="sign">sign up</a>
-            <a href="../login/index.php">login</a>
+            <a class="athent" href="../sign up/index.php" id="sign">sign up</a>
+            <a class="athent" href="../login/index.php">login</a>
         </div>
     </nav>

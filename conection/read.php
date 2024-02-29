@@ -9,7 +9,7 @@
  
 
 
- $login = "SELECT PASSWORD , USERNAME FROM UTILISATEUR";
+ $login = "SELECT ID_UTILISATEUR, PASSWORD , USERNAME FROM UTILISATEUR";
  $sql = $conn->prepare($login);
  $sql->execute();
  $authentificationInfo = $sql->fetchALL(PDO::FETCH_ASSOC);

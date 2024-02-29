@@ -30,7 +30,7 @@ nav img {
   align-items: center;
   position: relative;
 }
-i {
+.search i {
   position: absolute;
   left: 95%;
 }
@@ -55,7 +55,7 @@ nav h1 {
 h1 span {
   color: black;
 }
-nav a {
+.athent{
   border-radius: 7px;
   border: none;
   font-size: 120%;
@@ -76,7 +76,7 @@ nav a:hover {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 4%;
+  gap: 30px;
 }
 #sign {
   color: rgb(34, 149, 231);
@@ -192,4 +192,43 @@ main {
 }
 .finish {
   background-color: rgb(86, 22, 22) !important;
+}
+.dropbtn {
+  background-color: rgb(34, 149, 231);
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: rgb(34, 149, 231);
 }
