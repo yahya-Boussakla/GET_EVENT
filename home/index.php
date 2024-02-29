@@ -2,9 +2,7 @@
 include "../conection/database.php";
 include "../conection/read.php";
 session_start();
-if (isset($_SESSION['id'])) {
-    
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,15 +26,23 @@ if (isset($_SESSION['id'])) {
         </div>
         <h1><span>GET</span>EVENT</h1>
         <div class="buttons">
-            <i class="fa-solid fa-user"></i>
-            <div class="dropdown">
-                <button class="dropbtn">Account</button>
-                <div class="dropdown-content">
-                    <a href="#">Profile</a>
-                    <a href="#">Mes Achats</a>
-                    <a href="#">Log out</a>
-                </div>
-            </div>
+            <?php
+            if (isset($_SESSION['id'])) {
+                echo '<i class="fa-solid fa-user"></i>
+                <div class="dropdown">
+                    <button class="dropbtn">Account</button>
+                    <form class="dropdown-content" method="post">
+                        <a href="#">Profile</a>
+                        <a href="#">Mes Achats</a>
+                        <input type="submit" name="logout" class="logout" value="Log out">
+                    </form>
+                </div>';
+            }
+            else {
+                echo '<a class="athent" href="../sign up/index.php" id="sign">sign up</a>
+                <a class="athent" href="../login/index.php">login</a>';
+            }
+            ?>
         </div>
     </nav>
     <article>
@@ -85,3 +91,9 @@ if (isset($_SESSION['id'])) {
 </body>
 
 </html>
+<?php
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header("Location: index.php");
+}
+?>
