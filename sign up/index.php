@@ -24,8 +24,6 @@ include "sign-up.php";
                 <input type="text" name="lastName" placeholder="Last Name">
                 <label for="">Email</label>
                 <input type="text" name="email" placeholder="Email">
-                <label for="">Birthday</label>
-                <input type="date" name="birthday">
             </div>
             <div class="column1">
                 <label for="">User Name</label>

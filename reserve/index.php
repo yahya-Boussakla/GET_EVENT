@@ -1,5 +1,6 @@
 <?php
 include "reserve.php";
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,10 +9,12 @@ include "reserve.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GETEVENT</title>
     <link rel="stylesheet" href="reserve.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../includes/nav.css">
 </head>
 <body>
 <?php
-    include "../nav/nav.php";
+    include "../includes/nav.php";
 ?>
 <main>
     <h1 class="title">
@@ -39,12 +42,12 @@ include "reserve.php";
                     <span>Seconds</span>
                 </div>
             </div>
-            <form action="" methode="post">
+            <form action="" methode="post" id="form"> 
                 <div>Tarif Normale <?php echo $normal;?> MAD</div>
-                <input type="text" placeholder="Nombre de Ticket Normale">
+                <input type="text" placeholder="Nombre de Ticket Normale" name="nbNormale">
                 <div>Tarif Reduite <?php echo $reduite;?> MAD</div>
-                <input type="text" placeholder="Nombre de Ticket Reduite">
-                <input type="submit" value="BUY">
+                <input type="text" placeholder="Nombre de Ticket Reduite" name="nbReduite">
+                <input type="submit" value="BUY" name="buy">
             </form>
         </div>
     </div>
@@ -85,8 +88,15 @@ include "reserve.php";
         </div>
         <?php endforeach; ?>
 </article>
-<script src="reserve.js">
-    var date = <?php echo "test"; ?> 
-</script>
+<script src="reserve.js"></script>
 </body>
 </html>
+<?php
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header("Location: index.php?id=".$ID);
+}
+if (isset($_POST['reserve'])) {
+    echo "uiiu";
+}
+?>

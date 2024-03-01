@@ -20,4 +20,5 @@ foreach ($infoDetails as $key => $value) {
    $reduite = $value['TARIF_REDUIT'];
    $date = $value['DATE'];
 }
+
 ?>
