@@ -1,5 +1,8 @@
 <?php
 include "reserve.php";
+include "../conection/create.php";
+include "../conection/read.php";
+
 session_start();
 ?>
 <!DOCTYPE html>
@@ -42,7 +45,7 @@ session_start();
                     <span>Seconds</span>
                 </div>
             </div>
-            <form action="" methode="post" id="form"> 
+            <form action="" method="post" id="form"> 
                 <div>Tarif Normale <?php echo $normal;?> MAD</div>
                 <input type="text" placeholder="Nombre de Ticket Normale" name="nbNormale">
                 <div>Tarif Reduite <?php echo $reduite;?> MAD</div>
@@ -96,7 +99,32 @@ if (isset($_POST['logout'])) {
     session_destroy();
     header("Location: index.php?id=".$ID);
 }
-if (isset($_POST['reserve'])) {
-    echo "uiiu";
+if (isset($_POST['buy'])) {
+    if (isset($_SESSION['id'])) {
+        $reservePrepare->bindParam(':ID_USER', $_SESSION['id']);
+        $reservePrepare->bindParam(':ID_VERSION', $ID);
+        $reservePrepare->bindParam(':DATE_ACHAT', date("Y-m-d h:i:s"));
+        $reservePrepare->execute();
+
+        for ($i=0; $i < (int)$_POST['nbNormale']; $i++) { 
+
+            $billetPrepare->bindParam(':NUM_FACTURE', $idFacture[0]['numFactur']);
+            $billetPrepare->bindParam(':TYPE', 'NORMALE');
+            $billetPrepare->bindParam(':PLACE', $place[0]['place']);
+            $billetPrepare->execute();
+        }
+
+        for ($i=0; $i < (int)$_POST['nbReduite']; $i++) { 
+
+            $billetPrepare->bindParam(':NUM_FACTURE', $idFacture[0]['numFactur']);
+            $billetPrepare->bindParam(':TYPE', 'REDUITE');
+            $billetPrepare->bindParam(':PLACE', $place[0]['place']);
+            $billetPrepare->execute();
+        }
+
+    }
+    else {
+        echo "go sign up";
+    }
 }
 ?>

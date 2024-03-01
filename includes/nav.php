@@ -8,7 +8,7 @@ include "read.php";
             <img src="../imgs/logo.png" alt="">
             <div class="search">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="search..." onkeyup="search()">
+                <input type="search" placeholder="search..." onkeyup="search()">
             </div>
         </div>
         <h1><span>GET</span>EVENT</h1>

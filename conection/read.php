@@ -17,4 +17,14 @@
  $reserve = "SELECT * FROM EVENEMENT INNER JOIN VERSION USING(ID_EVENT) WHERE ID_VERSION = :ID";
  $details = $conn->prepare($reserve);
 
+ $lastFacture = "SELECT MAX(NUM_FACTURE) as numFactur FROM FACTURE";
+ $sql = $conn->prepare($lastFacture);
+ $sql->execute();
+ $idFacture = $sql->fetchALL(PDO::FETCH_ASSOC);
+
+ $numOfPlace = "SELECT MAX(PLACE)+1 as place FROM BILLET";
+ $sql = $conn->prepare($numOfPlace);
+ $sql->execute();
+ $place = $sql->fetchALL(PDO::FETCH_ASSOC);
+
 ?>
