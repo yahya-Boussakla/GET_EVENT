@@ -1,6 +1,6 @@
 <?php
 include "../conection/database.php";
-include "read.php";
+include "../conection/read.php";
 ?>
 
 <nav>
@@ -20,7 +20,7 @@ include "read.php";
                     <button class="dropbtn">Account</button>
                     <form class="dropdown-content" method="post">
                         <a href="#">Profile</a>
-                        <a href="#">Mes Achats</a>
+                        <a href="../mes achats/achats.php">Mes Achats</a>
                         <input type="submit" name="logout" class="logout" value="Log Out">
                     </form>
                 </div>';

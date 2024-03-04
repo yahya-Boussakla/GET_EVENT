@@ -80,10 +80,14 @@ session_start();
                 <?php
                     echo "href=../reserve/index.php?id=".$info["ID_VERSION"];
                     if ($info["DISPONIBLE"]==0) {
-                        echo " class='finish'";
+                        echo " class='finish' >Fermée</a>";
                     }
-                ?>
-                >J'ACHÉTE</a>
+                    else {
+                        echo ">J'ACHÉTE</a>";
+                    }
+                    
+                    ?>
+                
             </div>
             <div class="category">
                 <?= $info['CATEGORIE'] ?>
@@ -95,36 +99,70 @@ session_start();
 </body>
 </html>
 <?php
+$finish = false;
 if (isset($_POST['logout'])) {
     session_destroy();
     header("Location: index.php?id=".$ID);
 }
 if (isset($_POST['buy'])) {
-    if (isset($_SESSION['id'])) {
-        $reservePrepare->bindParam(':ID_USER', $_SESSION['id']);
-        $reservePrepare->bindParam(':ID_VERSION', $ID);
-        $reservePrepare->bindParam(':DATE_ACHAT', date("Y-m-d h:i:s"));
-        $reservePrepare->execute();
-
-        for ($i=0; $i < (int)$_POST['nbNormale']; $i++) { 
-
-            $billetPrepare->bindParam(':NUM_FACTURE', $idFacture[0]['numFactur']);
-            $billetPrepare->bindParam(':TYPE', 'NORMALE');
-            $billetPrepare->bindParam(':PLACE', $place[0]['place']);
-            $billetPrepare->execute();
+    foreach($allEvents as $event){
+       
+        if ($event['ID_VERSION'] == $ID && $event['DISPONIBLE'] == 0) {
+                $finish = true;
         }
+    }
 
-        for ($i=0; $i < (int)$_POST['nbReduite']; $i++) { 
-
-            $billetPrepare->bindParam(':NUM_FACTURE', $idFacture[0]['numFactur']);
-            $billetPrepare->bindParam(':TYPE', 'REDUITE');
-            $billetPrepare->bindParam(':PLACE', $place[0]['place']);
-            $billetPrepare->execute();
-        }
-
+    if ($finish == true) {
+        echo "event plein";
     }
     else {
-        echo "go sign up";
-    }
+        if (isset($_SESSION['id'])) {
+            $normale = "normale";
+            $reduite = "reduite";
+            $date = date("Y-m-d h:i:s");
+            // $place = $place[0]['place'];
+            
+            $reservePrepare->bindParam(':ID_USER', $_SESSION['id']);
+            $reservePrepare->bindParam(':ID_VERSION', $ID);
+            $reservePrepare->bindParam(':DATE_ACHAT', $date);
+            $reservePrepare->execute();
+            
+            $lastFacture = "SELECT MAX(NUM_FACTURE) as numFactur FROM FACTURE";
+            $sql = $conn->prepare($lastFacture);
+            $sql->execute();
+            $idFacture = $sql->fetchALL(PDO::FETCH_ASSOC);
+            $fac = $idFacture[0]['numFactur'];
+    
+    
+            $numOfPlace = "SELECT count(PLACE)+1 as place FROM BILLET";
+            $sql = $conn->prepare($numOfPlace);
+           
+            
+            for ($i=0; $i < (int)$_POST['nbNormale']; $i++) { 
+                $sql->execute();
+                $place = $sql->fetchALL(PDO::FETCH_ASSOC)[0]['place'];
+                $billetPrepare->bindValue(':FAC', $fac);
+                $billetPrepare->bindValue(':typ', $normale);
+                $billetPrepare->bindValue(':place', $place);
+                $billetPrepare->execute();
+            }
+    
+            for ($i=0; $i < (int)$_POST['nbReduite']; $i++) { 
+                $sql->execute();
+                $place = $sql->fetchALL(PDO::FETCH_ASSOC)[0]['place'];
+                $billetPrepare->bindValue(':FAC', $fac);
+                $billetPrepare->bindValue(':typ', $reduite);
+                $billetPrepare->bindValue(':place', $place);
+                $billetPrepare->execute();
+            }
+    
+        }
+        else {
+            echo "go sign up";
+        }
+    }         
+    echo "<pre>";
+    var_dump($allEvents);
+    echo "</pre>";       
 }
 ?>

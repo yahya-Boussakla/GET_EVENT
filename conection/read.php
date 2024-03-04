@@ -17,14 +17,8 @@
  $reserve = "SELECT * FROM EVENEMENT INNER JOIN VERSION USING(ID_EVENT) WHERE ID_VERSION = :ID";
  $details = $conn->prepare($reserve);
 
- $lastFacture = "SELECT MAX(NUM_FACTURE) as numFactur FROM FACTURE";
- $sql = $conn->prepare($lastFacture);
- $sql->execute();
- $idFacture = $sql->fetchALL(PDO::FETCH_ASSOC);
+ $achats = "SELECT ID_UTILISATEUR, NOM, NUM_FACTURE, TITRE, TYPE, TARIF_REDUIT, TARIF_NORMAL, COUNT(NUM_BILLET) FROM evenement INNER JOIN version USING(ID_EVENT) INNER JOIN facture USING(ID_VERSION) INNER JOIN billet USING (NUM_FACTURE) INNER JOIN utilisateur USING(ID_UTILISATEUR) GROUP BY NUM_FACTURE ,TYPE HAVING ID_UTILISATEUR = :user;";
+ $facture = $conn->prepare($achats);
 
- $numOfPlace = "SELECT MAX(PLACE)+1 as place FROM BILLET";
- $sql = $conn->prepare($numOfPlace);
- $sql->execute();
- $place = $sql->fetchALL(PDO::FETCH_ASSOC);
 
 ?>
