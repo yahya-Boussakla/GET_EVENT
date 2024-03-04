@@ -65,6 +65,3 @@ include "../includes/nav.php";
     <script src="script.js"></script>
 </body>
 </html>
-<?php
-
-?>

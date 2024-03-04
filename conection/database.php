@@ -7,7 +7,4 @@
     echo "Connection failed: " . $e->getMessage();
   }
   
-   
-
-// $signUp = "INSERT INTO UTILISATEURE (NOM,PRENOM,)";
 ?>

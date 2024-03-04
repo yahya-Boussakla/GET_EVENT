@@ -26,8 +26,8 @@ include "../conection/read.php";
                 </div>';
             }
             else {
-                echo '<a class="athent" href="../sign up/index.php" id="sign">sign up</a>
-                <a class="athent" href="../login/index.php">login</a>';
+                echo '<a class="authent" href="../sign up/index.php" id="sign">Sign up</a>
+                <a class="authent" href="../login/index.php">Log in</a>';
             }
             ?>
         </div>

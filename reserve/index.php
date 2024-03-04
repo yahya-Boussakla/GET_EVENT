@@ -119,7 +119,6 @@ if (isset($_POST['buy'])) {
             $normale = "normale";
             $reduite = "reduite";
             $date = date("Y-m-d h:i:s");
-            // $place = $place[0]['place'];
             
             $reservePrepare->bindParam(':ID_USER', $_SESSION['id']);
             $reservePrepare->bindParam(':ID_VERSION', $ID);
@@ -159,9 +158,6 @@ if (isset($_POST['buy'])) {
         else {
             echo "go sign up";
         }
-    }         
-    echo "<pre>";
-    var_dump($allEvents);
-    echo "</pre>";       
+    }             
 }
 ?>
