@@ -33,5 +33,8 @@ include "../conection/read.php";
         </div>
     </nav>
     <?php
-
+    if (isset($_POST['logout'])) {
+        session_destroy();
+        header("Location: ../home/index.php");
+    }
 ?>

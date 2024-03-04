@@ -10,6 +10,9 @@ if (isset($_POST['login'])) {
             $_SESSION['id'] = $authentification['ID_UTILISATEUR'];
             header("Location: ../home/index.php");
         }
+        else{
+            echo "hhhh";
+        }
     }
 }
 ?>

@@ -87,7 +87,6 @@ session_start();
                     }
                     
                     ?>
-                
             </div>
             <div class="category">
                 <?= $info['CATEGORIE'] ?>
