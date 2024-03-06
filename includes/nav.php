@@ -19,7 +19,7 @@ include "../conection/read.php";
                 <div class="dropdown">
                     <button class="dropbtn">Account</button>
                     <form class="dropdown-content" method="post">
-                        <a href="#">Profile</a>
+                        <a href="../profile/index.php">Profile</a>
                         <a href="../mes achats/achats.php">Mes Achats</a>
                         <input type="submit" name="logout" class="logout" value="Log Out">
                     </form>
