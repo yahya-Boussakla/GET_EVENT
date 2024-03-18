@@ -46,7 +46,7 @@
         <?php
         if (isset($_POST[$facture['NF']])) {
           include "../includes/facture.php";
-          echo "<script src='facture.js'></script>";
+          echo "<script src='../includes/facture.js'></script>";
         }
         ?>
       </tr>

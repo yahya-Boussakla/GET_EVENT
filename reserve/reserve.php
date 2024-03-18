@@ -6,19 +6,83 @@ $anotherEvents->bindParam(':ID',$ID);
 $anotherEvents->execute();
 $Events = $anotherEvents->fetchALL(PDO::FETCH_ASSOC);
 
+session_start();
 
 $details->bindParam(':ID',$ID);
 $details->execute();
 $infoDetails = $details->fetchALL(PDO::FETCH_ASSOC);
-// echo "<pre>";
-// print_r($infoDetails);
-// echo "</pre>";
+
+
 foreach ($infoDetails as $key => $value) {
    $TITLE = $value['TITRE'];
    $desc = $value['DESCRIPTION'];
    $normal = $value['TARIF_NORMAL'];
    $reduite = $value['TARIF_REDUIT'];
    $date = $value['DATE'];
+   $dispo = $value['DISPONIBLE'];
 }
+$finish = false;
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header("Location: index.php?id=".$ID);
+}
+if (isset($_POST['buy'])) {
+ 
+        if (isset($_SESSION['id'])) {
+         if ($dispo <= 0) {
+            echo "event plein";
+         }
+         else {
+            if ($dispo >= (int)$_POST['nbNormale'] + (int)$_POST['nbReduite']) {
+
+               $normale = "normale";
+               $reduite = "reduite";
+               $date = date("Y-m-d h:i:s");
+               
+               $reservePrepare->bindParam(':ID_USER', $_SESSION['id']);
+               $reservePrepare->bindParam(':ID_VERSION', $ID);
+               $reservePrepare->bindParam(':DATE_ACHAT', $date);
+               $reservePrepare->execute();
+               
+               $lastFacture = "SELECT MAX(NUM_FACTURE) as numFactur FROM FACTURE";
+               $sql = $conn->prepare($lastFacture);
+               $sql->execute();
+               $idFacture = $sql->fetchALL(PDO::FETCH_ASSOC);
+               $fac = $idFacture[0]['numFactur'];
+       
+       
+               $numOfPlace = "SELECT count(PLACE)+1 as place FROM BILLET";
+               $sql = $conn->prepare($numOfPlace);
+              
+               
+               for ($i=0; $i < (int)$_POST['nbNormale']; $i++) { 
+                   $sql->execute();
+                   $place = $sql->fetchALL(PDO::FETCH_ASSOC)[0]['place'];
+                   $billetPrepare->bindValue(':FAC', $fac);
+                   $billetPrepare->bindValue(':typ', $normale);
+                   $billetPrepare->bindValue(':place', $place);
+                   $billetPrepare->execute();
+               }
+       
+               for ($i=0; $i < (int)$_POST['nbReduite']; $i++) { 
+                   $sql->execute();
+                   $place = $sql->fetchALL(PDO::FETCH_ASSOC)[0]['place'];
+                   $billetPrepare->bindValue(':FAC', $fac);
+                   $billetPrepare->bindValue(':typ', $reduite);
+                   $billetPrepare->bindValue(':place', $place);
+                   $billetPrepare->execute();
+               }            
+            }
+            else{
+               echo "only ". $dispo. " places are available"; 
+            }
+         }
+   
+        }
+        else {
+            echo "go sign up";
+        }
+    }             
+
 
 ?>

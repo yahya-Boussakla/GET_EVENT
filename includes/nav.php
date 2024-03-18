@@ -3,7 +3,7 @@ include "../conection/database.php";
 include "../conection/read.php";
 ?>
 
-<nav>
+    <nav>
         <div class="position">
             <img src="../imgs/logo.png" alt="">
             <div class="search">
@@ -19,6 +19,7 @@ include "../conection/read.php";
                 <div class="dropdown">
                     <button class="dropbtn">Account</button>
                     <form class="dropdown-content" method="post">
+                        <a href="../home/index.php">Home</a>
                         <a href="../profile/index.php">Profile</a>
                         <a href="../mes achats/achats.php">Mes Achats</a>
                         <input type="submit" name="logout" class="logout" value="Log Out">

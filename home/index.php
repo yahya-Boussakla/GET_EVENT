@@ -50,11 +50,14 @@ include "../includes/nav.php";
                 <a 
                 <?php
                     echo "href=../reserve/index.php?id=".$info["ID_VERSION"];
-                    if ($info["DISPONIBLE"]==0) {
-                        echo " class='finish'";
+                    if ($info["DISPONIBLE"]<=0) {
+                        echo " class='finish' >Fermée</a>";
                     }
-                ?>
-                >J'ACHÉTE</a>
+                    else {
+                        echo ">J'ACHÉTE</a>";
+                    }
+                    
+                    ?>
             </div>
             <div class="category">
                 <?= $info['CATEGORIE'] ?>

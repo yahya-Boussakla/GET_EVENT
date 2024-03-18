@@ -36,26 +36,23 @@ setTimer();
 function search() {
   let titles = document.querySelectorAll(".cardInformation h2");
   let searchValue = document.querySelector(".search input").value;
-  searchLoop(titles, searchValue);
-}
-
-function changeTextButton() {
-  for (const button of cardButtons) {
-    button.innerText = "Guichet fermé";
-  }
-}
-
-changeTextButton();
-
-function searchLoop(arr, val) {
-  for (const title of arr) {
-    if (title.innerText.toLowerCase().includes(val.toLowerCase())) {
+  for (const title of titles) {
+    if (title.innerText.toLowerCase().includes(searchValue.toLowerCase())) {
       title.parentElement.parentElement.style.display = "block";
     } else {
       title.parentElement.parentElement.style.display = "none";
     }
   }
 }
+
+// function changeTextButton() {
+//   for (const button of cardButtons) {
+//     button.innerText = "Guichet fermé";
+//   }
+// }
+
+// changeTextButton();
+
 
 function available() {
   let availableFilter = document.querySelector("select").value;
