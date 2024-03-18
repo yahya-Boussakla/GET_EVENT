@@ -1,11 +1,12 @@
 let dates = document.querySelectorAll(".time span");
-function setTimer() {
-    for (const date of dates) {
-        removeFinishedEvent(date);
-    }
-}
+let date = document.getElementById("date");
+let day = document.getElementById("day");
+let hour = document.getElementById("hour");
+let minute = document.getElementById("minute");
+let second = document.getElementById("second");
+
 function removeFinishedEvent(element) {
-    var countDownDate = new Date(element.innerHTML).getTime();
+    var countDownDate = new Date(element.value).getTime();
 
     setInterval(function () {
         var now = new Date().getTime();
@@ -15,19 +16,15 @@ function removeFinishedEvent(element) {
         var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
-
-        element.innerText = days + " d " + hours + " h " + minutes + " m " + seconds + " s ";
-        if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
-            element.parentElement.parentElement.parentElement.remove();
-        }
+    
+        day.innerText = days;
+        hour.innerText = hours;
+        minute.innerText = minutes;
+        second.innerText = seconds;
+        
     }, 1000);
 }
 
+removeFinishedEvent(date);
+
 setTimer();
-// let xhr = new XMLHttpRequest();
-// xhr.open('GET','reserve.php',true)
-// xhr.onload = () => {
-//     let jsonData = JSON.parse(xhr.responseText);
-//     console.log(jsonData);
-// }
-// xhr.send();

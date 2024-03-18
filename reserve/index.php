@@ -28,28 +28,29 @@ include "../conection/read.php";
         <div class="buy">
             <div class="count">
                 <div>
-                    <h4>5</h4>
-                    <span>Days</span>
+                    <h4 id="day"></h4>
+                    <span>D</span>
                 </div>
                 <div>
-                    <h4>5</h4>
-                    <span>Hours</span>
+                    <h4 id="hour"></h4>
+                    <span>H</span>
                 </div>
                 <div>
-                    <h4>5</h4>
-                    <span>Minutes</span>
+                    <h4 id="minute"></h4>
+                    <span>M</span>
                 </div>
                 <div>
-                    <h4>5</h4>
-                    <span>Seconds</span>
+                    <h4 id="second"></h4>
+                    <span>S</span>
                 </div>
             </div>
             <form action="" method="post" id="form"> 
                 <div>Tarif Normale <?php echo $normal;?> MAD</div>
-                <input type="text" placeholder="Nombre de Ticket Normale" name="nbNormale">
+                <input type="number" min="0" placeholder="Nombre de Ticket Normale" name="nbNormale">
                 <div>Tarif Reduite <?php echo $reduite;?> MAD</div>
-                <input type="text" placeholder="Nombre de Ticket Reduite" name="nbReduite">
+                <input type="number" min="0" placeholder="Nombre de Ticket Reduite" name="nbReduite">
                 <input type="submit" value="BUY" name="buy">
+                <input id="date" hidden value="<?php echo $date;?>">
             </form>
         </div>
     </div>

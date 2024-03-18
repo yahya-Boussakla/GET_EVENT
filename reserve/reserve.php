@@ -2,6 +2,7 @@
 $ID = $_GET['id'];
 include "../conection/database.php";
 include "../conection/read.php";
+include "../conection/create.php";
 $anotherEvents->bindParam(':ID',$ID);
 $anotherEvents->execute();
 $Events = $anotherEvents->fetchALL(PDO::FETCH_ASSOC);
@@ -22,18 +23,19 @@ foreach ($infoDetails as $key => $value) {
    $dispo = $value['DISPONIBLE'];
 }
 $finish = false;
-if (isset($_POST['logout'])) {
+if (isset($_POST['logout'])){
     session_destroy();
     header("Location: index.php?id=".$ID);
 }
 if (isset($_POST['buy'])) {
- 
         if (isset($_SESSION['id'])) {
+
          if ($dispo <= 0) {
             echo "event plein";
          }
+
          else {
-            if ($dispo >= (int)$_POST['nbNormale'] + (int)$_POST['nbReduite']) {
+            if ($dispo >= $_POST['nbNormale'] + $_POST['nbReduite']) {  
 
                $normale = "normale";
                $reduite = "reduite";
