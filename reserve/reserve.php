@@ -35,7 +35,8 @@ if (isset($_POST['buy'])) {
          }
 
          else {
-            if ($dispo >= $_POST['nbNormale'] + $_POST['nbReduite']) {  
+
+            if ($dispo >= ifnul($_POST['nbNormale']) + ifnul($_POST['nbReduite'])) {  
 
                $normale = "normale";
                $reduite = "reduite";
@@ -87,4 +88,12 @@ if (isset($_POST['buy'])) {
     }             
 
 
+function ifnul($parame){
+    if (empty($parame)) {
+        return $parame = 0;
+    }
+    else {
+        return $parame;
+    }
+}
 ?>

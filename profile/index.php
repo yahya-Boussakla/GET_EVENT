@@ -25,7 +25,6 @@
     <div class="box" id="info">
         <p><b>your user name : </b><span><?= $profileInfo[0]['USERNAME']?></span></p>
             <p><b>your email : </b><span><?= $profileInfo[0]['EMAIL']?></span></p>
-            <p><b>your birthday : </b><span><?= $profileInfo[0]['BIRTHDAY']?></span></p>
             <p><b>your password : </b><span><?= $profileInfo[0]['PASSWORD']?></span></p>
             <p><b>your signup date : </b><span><?= $profileInfo[0]['SIGNUPDATE']?></span></p>
             <p><b>nombre des factures : </b><span><?= $profileInfo[0]['COUNT(NUM_FACTURE)']?></span></p>

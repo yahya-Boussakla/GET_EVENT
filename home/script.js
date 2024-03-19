@@ -2,6 +2,8 @@ let cardButtons = document.querySelectorAll(".finish");
 let secondDateFilter = document.getElementById("secondFilter");
 let firstDateFilter = document.getElementById("firstFilter");
 let dates = document.querySelectorAll(".time span");
+let cards = document.querySelectorAll(".card");
+let noResult = true;
 
 
 function setTimer() {
@@ -63,6 +65,12 @@ function available() {
       button.parentElement.parentElement.style.display = "none";
     }
   }
+  // if (checkResult()) {
+  //   console.log("no result");
+  // }
+  // else{
+  //   console.log("eror");
+  // }
 }
 
 function dateFrom(date,element) {
@@ -127,3 +135,13 @@ function dateTo(date,element) {
       }
     });
   }
+
+
+  function checkResult() {
+    for (const card of cards) {
+      style = window.getComputedStyle(card),
+      top = style.getPropertyValue('display');
+      console.log(top);
+    }
+  }
+  checkResult();

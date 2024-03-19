@@ -32,6 +32,7 @@ include "../includes/nav.php";
 
     </article>
     <main>
+        
         <?php
             foreach($allEvents  as $info):
         ?>
