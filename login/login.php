@@ -11,7 +11,7 @@ if (isset($_POST['login'])) {
             header("Location: ../home/index.php");
         }
         else{
-            echo "hhhh";
+            $_SESSION['error'] = "hhhh";
         }
     }
 }

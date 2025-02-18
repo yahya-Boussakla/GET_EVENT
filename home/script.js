@@ -44,16 +44,10 @@ function search() {
     } else {
       title.parentElement.parentElement.style.display = "none";
     }
+    checkResult();
+    noResult = true;
   }
 }
-
-// function changeTextButton() {
-//   for (const button of cardButtons) {
-//     button.innerText = "Guichet fermé";
-//   }
-// }
-
-// changeTextButton();
 
 
 function available() {
@@ -65,16 +59,14 @@ function available() {
       button.parentElement.parentElement.style.display = "none";
     }
   }
-  // if (checkResult()) {
-  //   console.log("no result");
-  // }
-  // else{
-  //   console.log("eror");
-  // }
+  
+  checkResult();
+  noResult = true;
 }
 
 function dateFrom(date,element) {
   firstDateFilter.addEventListener("change" , () =>{
+    secondDateFilter.setAttribute("min", firstDateFilter.value)
       let firstFilterTimeLeft = date - new Date(firstDateFilter.value).getTime();
       let firstFilterDaysLeft = Math.floor(firstFilterTimeLeft / (1000 * 60 * 60 * 24));
       let firstFilterHoursLeft = Math.floor((firstFilterTimeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -93,6 +85,8 @@ function dateFrom(date,element) {
         else{
           element.parentElement.parentElement.parentElement.style.display="none";
         }
+        checkResult();
+        noResult = true;
       }
       else{
          if (firstFilterDaysLeft >= 0 && firstFilterHoursLeft >= 0 && firstFilterMinutsLeft >= 0) {
@@ -101,6 +95,8 @@ function dateFrom(date,element) {
         else{
           element.parentElement.parentElement.parentElement.style.display="none";
         }
+        checkResult();
+        noResult = true;
       }
   });
 }
@@ -124,6 +120,8 @@ function dateTo(date,element) {
         else{
           element.parentElement.parentElement.parentElement.style.display="none";
         }
+        checkResult();
+        noResult = true;
       }
       else{
          if (secondFilterDaysLeft <= 0 && secondFilterHoursLeft <= 0 && secondFilterMinutsLeft <= 0) {
@@ -132,6 +130,8 @@ function dateTo(date,element) {
         else{
           element.parentElement.parentElement.parentElement.style.display="none";
         }
+        checkResult();
+        noResult = true;
       }
     });
   }
@@ -139,9 +139,15 @@ function dateTo(date,element) {
 
   function checkResult() {
     for (const card of cards) {
-      style = window.getComputedStyle(card),
-      top = style.getPropertyValue('display');
-      console.log(top);
+      let displaye = card.style.display;
+      if (displaye == "block") {
+        noResult = false;
+      }
+    }
+    if (noResult == true) {
+      console.log("no result");
+    }
+    else{
+      console.log("result");
     }
   }
-  checkResult();

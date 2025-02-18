@@ -5,11 +5,21 @@ include "../conection/read.php";
 
     <nav>
         <div class="position">
-            <img src="../imgs/logo.png" alt="">
+            <a href="/home/index.php" id="HomeLink">
+                <img src="../imgs/logo.png" alt="">
+            </a>
+            <?php
+            if (isset($SearchOn)) {
+            ?>
+
             <div class="search">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="search" placeholder="search..." onkeyup="search()">
             </div>
+            <?php
+            }
+            ?>
+            
         </div>
         <h1><span>GET</span>EVENT</h1>
         <div class="buttons">

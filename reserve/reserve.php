@@ -31,7 +31,8 @@ if (isset($_POST['buy'])) {
         if (isset($_SESSION['id'])) {
 
          if ($dispo <= 0) {
-            echo "event plein";
+            $_GET['type'] = '';
+            $_GET['message'] = "event plein";
          }
 
          else {
@@ -74,16 +75,18 @@ if (isset($_POST['buy'])) {
                    $billetPrepare->bindValue(':typ', $reduite);
                    $billetPrepare->bindValue(':place', $place);
                    $billetPrepare->execute();
-               }            
+               }
+               $_GET['type'] = "sucsess";
+               $_GET['message'] = "sucsess";
             }
             else{
-               echo "only ". $dispo. " places are available"; 
+                $_GET['message'] =  "only ". $dispo. " places are available";
             }
          }
    
         }
         else {
-            echo "go sign up";
+            $_GET['message'] =  "go sign up";
         }
     }             
 

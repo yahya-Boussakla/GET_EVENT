@@ -30,7 +30,7 @@
         <th>Qunatite des Billets Normal</th>
         <th>Qunatite des Billets Reduites</th>
         <th>Totale Facture</th>
-        <th></th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>

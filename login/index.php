@@ -21,6 +21,7 @@ include "login.php";
             <h1>LOGIN</h1>
             <input type="text" placeholder="username" name="username"><br>
             <input type="text" placeholder="password" name="password"><br>
+            
             <input type="submit" value="LOGIN" name="login">
             <span>you dont have an acount go <a href="../sign up/index.php">sign up</a></span>
         </form>

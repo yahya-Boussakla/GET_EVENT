@@ -27,4 +27,3 @@ function removeFinishedEvent(element) {
 
 removeFinishedEvent(date);
 
-setTimer();

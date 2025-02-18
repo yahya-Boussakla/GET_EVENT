@@ -18,6 +18,7 @@ session_start();
 
 <body>
 <?php
+$SearchOn = true;
 include "../includes/nav.php";
 ?>
     <article>
@@ -26,9 +27,9 @@ include "../includes/nav.php";
             <option value="2">ONLY AVAILABLE</option>
         </select>
         <h1>select event date from</h1>
-        <input type="date" id="firstFilter">
+        <input type="date" id="firstFilter" min="2024-03-22" value="2024-03-22">
         <span>to</span>
-        <input type="date" name="" id="secondFilter">
+        <input type="date" name="" id="secondFilter" min="2024-03-22">
 
     </article>
     <main>
@@ -36,8 +37,8 @@ include "../includes/nav.php";
         <?php
             foreach($allEvents  as $info):
         ?>
-        <div class="card">
-            <img src="../imgs/green-mask.png" alt="">
+        <div class="card" style="display : block;">
+            <img src="../imgs/<?= $info['IMAGE'] ?>" alt="">
             <div class="cardInformation">
                 <h2>
                     <?= $info['TITRE'] ?>

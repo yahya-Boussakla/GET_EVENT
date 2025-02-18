@@ -10,6 +10,9 @@ include "../conection/read.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GETEVENT</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <link rel="stylesheet" href="reserve.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../includes/nav.css">
@@ -18,6 +21,22 @@ include "../conection/read.php";
 <?php
     include "../includes/nav.php";
 ?>
+<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" id="modalHeader">
+                <h5 class="modal-title" id="alertModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="alertModalMessage">
+                <!-- Message will be injected here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" id="modalButton" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 <main>
     <h1 class="title">
     <?php
@@ -94,6 +113,37 @@ include "../conection/read.php";
         </div>
         <?php endforeach; ?>
 </article>
+<?php 
+if (isset($_GET['message']) && isset($_GET['type'])): 
+    $message = htmlspecialchars($_GET['message']);
+    $type = $_GET['type'] === 'success' ? 'success' : 'danger'; // Only allow "success" or "danger"
+?>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var modalHeader = document.getElementById('modalHeader');
+        var modalTitle = document.getElementById('alertModalLabel');
+        var modalMessage = document.getElementById('alertModalMessage');
+        var modalButton = document.getElementById('modalButton');
+
+        if ("<?= $type ?>" === "success") {
+            modalHeader.className = "modal-header bg-success text-white";
+            modalTitle.innerText = "Success";
+            modalButton.className = "btn btn-success";
+        } else {
+            modalHeader.className = "modal-header bg-danger text-white";
+            modalTitle.innerText = "Error";
+            modalButton.className = "btn btn-danger";
+        }
+
+        modalMessage.innerText = "<?= $message ?>";
+
+        var alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
+        alertModal.show();
+    });
+</script>
+<?php endif; ?>
+
 <script src="reserve.js"></script>
+
 </body>
 </html>
